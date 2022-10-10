@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  min-height: 100vh;
+  background: #E3F2FD;
+}
+body, .video-controls, .video-timer, .options{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container{
+  width: 100%;
+  max-width: 980px;
+  position: relative;
+  background: #000;
+  border-radius: 5px;
+  overflow: hidden; 
+}
+.wrapper{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -15px;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.08s ease;
+}
+.container.show-controls .wrapper{
+  bottom: 0 ;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.13s ease;
+}
+.wrapper::before{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: calc(100% + 35px);
+  z-index: -1;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+.video-timeline{
+  height: 7px;
+  width: 100%;
+  cursor: pointer;
+}
+.video-timeline .progress-area{
+  height: 3px;
+  background: rgba(255,255,255,0.6);
+}
+.video-timeline .progress-area span{
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: -30px;
+  transform: translateX(-50%);
+}
+.video-timeline .progress-area .progress-bar{ 
+  width: 0%;
+  height: 100%;
+  background: #2289FF;
+  position: relative;
+}
+.video-timeline .progress-area .progress-bar:before{
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  height: 13px;
+  width: 13px;
+  background: inherit;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.video-timeline:hover .progress-area span, 
+.video-timeline:hover .progress-area .progress-bar:before{
+  display: block;
+}
+.progress-area span, 
+.progress-area .progress-bar:before{
+  display: none;
+}
+.video-controls{
+  padding: 5px 20px 10px;
+}
+.video-controls, .options{
+  width: 100%;
+}
+.video-controls, .options:first-child{
+  justify-content: flex-start;
+}
+.video-controls, .options:last-child{
+  justify-content: flex-end;
+}
+.playback-content{
+  position: relative;
+}
+.playback-content .speed-options{
+  position: absolute;
+  bottom: 40px;
+  left: -40px;
+  width: 95px;
+  border-radius: 4px;
+  list-style: none;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.13s ease;
+}
+.playback-content .speed-options.show{
+  opacity: 1;
+  pointer-events: auto;
+}
+.playback-content .speed-options li{
+  font-size: 14px;
+  padding: 5px 0 5px 15px;
+  cursor: pointer;
+}
+.playback-content .speed-options li.active{
+  color: #FFF;
+  background: #2289FF;
+}
+.options button{
+  height: 40px;
+  width: 40px;
+  color: #fff;
+  font-size: 19px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.options button :where(i, span){
+  height: 100%;
+  width: 100%;
+  line-height: 40px;
+}
+.video-controls .options input{
+  height: 4px;
+  max-width: 75px;
+}
+.options .video-timer{
+  font-size: 14px;
+  color: #efefef;
+  margin-left: 15px;
+}
+.options .video-timer .separator{
+  font-size: 14px;
+  margin: 0 5px;
+}
+.video-wrapper{
+  display: flex;
+}
+.container video{
+  width: 100%;
+}
